@@ -46,6 +46,7 @@ resource "aws_instance" "myFirstInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
+ subnet_id     = "subnet-07d7dece82044686e"
   vpc_security_group_ids = [aws_security_group.jenkins-sg-2022.id]
 
   # Set root volume size to 20 GB
@@ -63,7 +64,7 @@ resource "aws_instance" "myFirstInstance" {
 # Create Elastic IP address
 resource "aws_eip" "myFirstInstance" {
  // vpc      = true
- subnet_id     = "subnet-07d7dece82044686e"
+
   instance = aws_instance.myFirstInstance.id
 tags= {
     Name = "my_elastic_ip"
